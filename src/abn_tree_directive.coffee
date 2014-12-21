@@ -198,6 +198,9 @@ module.directive 'abnTree',['$timeout',($timeout)->
         # they will be rendered like:
         # <i class="icon-plus"></i>
         #
+        
+        
+        ###
         if not branch.noLeaf and (not branch.children or branch.children.length == 0)
           tree_icon = attrs.iconLeaf
           branch.classes.push "leaf" if "leaf" not in branch.classes
@@ -206,7 +209,12 @@ module.directive 'abnTree',['$timeout',($timeout)->
             tree_icon = attrs.iconCollapse
           else
             tree_icon = attrs.iconExpand 
-
+        ###    
+        if branch.noLeaf
+          if branch.expanded
+            tree_icon = attrs.iconCollapse
+          else
+            tree_icon = attrs.iconExpand 
 
         #
         # append to the list of "Tree Row" objects:

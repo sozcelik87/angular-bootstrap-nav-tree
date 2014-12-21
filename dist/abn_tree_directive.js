@@ -1,6 +1,5 @@
 (function() {
-  var module,
-    __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+  var module;
 
   module = angular.module('angularBootstrapNavTree', []);
 
@@ -8,7 +7,7 @@
     '$timeout', function($timeout) {
       return {
         restrict: 'E',
-        template: "<ul class=\"nav nav-list nav-pills nav-stacked abn-tree\">\n  <li ng-repeat=\"row in tree_rows | filter:{visible:true} track by row.branch.uid\" ng-animate=\"'abn-tree-animate'\" ng-class=\"'level-' + {{ row.level }} + (row.branch.selected ? ' active':'') + ' ' +row.classes.join(' ')\" class=\"abn-tree-row\"><a ng-click=\"user_clicks_branch(row.branch)\"><i ng-class=\"row.tree_icon\" ng-click=\"row.branch.expanded = !row.branch.expanded\" class=\"indented tree-icon\"> </i><span class=\"indented tree-label\">{{ row.label }} </span></a></li>\n</ul>",
+        template: "<ul class=\"nav nav-list nav-pills nav-stacked abn-tree\">\n  <li ng-repeat=\"row in tree_rows | filter:{visible:true} track by $index\" ng-animate=\"'abn-tree-animate'\" ng-class=\"'level-' + {{ row.level }} + (row.branch.selected ? ' active':'') + ' ' +row.classes.join(' ')\" class=\"abn-tree-row\"><a ng-click=\"user_clicks_branch(row.branch)\"><i ng-class=\"row.tree_icon\" ng-click=\"row.branch.expanded = !row.branch.expanded\" class=\"indented tree-icon\"> </i><span class=\"indented tree-label\">{{ row.label }} </span></a></li>\n</ul>",
         replace: true,
         scope: {
           treeData: '=',
@@ -135,25 +134,6 @@
           scope.tree_rows = [];
           on_treeData_change = function() {
             var add_branch_to_list, root_branch, _i, _len, _ref, _results;
-            for_each_branch(function(b, level) {
-              if (!b.uid) {
-                return b.uid = "" + Math.random();
-              }
-            });
-            console.log('UIDs are set.');
-            for_each_branch(function(b) {
-              var child, _i, _len, _ref, _results;
-              if (angular.isArray(b.children)) {
-                _ref = b.children;
-                _results = [];
-                for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-                  child = _ref[_i];
-                  _results.push(child.parent_uid = b.uid);
-                }
-                return _results;
-              }
-            });
-            scope.tree_rows = [];
             for_each_branch(function(branch) {
               var child, f;
               if (branch.children) {
@@ -183,6 +163,25 @@
                 return branch.children = [];
               }
             });
+            for_each_branch(function(b, level) {
+              if (!b.uid) {
+                return b.uid = "" + Math.random();
+              }
+            });
+            console.log('UIDs are set.');
+            for_each_branch(function(b) {
+              var child, _i, _len, _ref, _results;
+              if (angular.isArray(b.children)) {
+                _ref = b.children;
+                _results = [];
+                for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+                  child = _ref[_i];
+                  _results.push(child.parent_uid = b.uid);
+                }
+                return _results;
+              }
+            });
+            scope.tree_rows = [];
             add_branch_to_list = function(level, branch, visible) {
               var child, child_visible, tree_icon, _i, _len, _ref, _results;
               if (branch.expanded == null) {
@@ -191,12 +190,18 @@
               if (branch.classes == null) {
                 branch.classes = [];
               }
-              if (!branch.noLeaf && (!branch.children || branch.children.length === 0)) {
-                tree_icon = attrs.iconLeaf;
-                if (__indexOf.call(branch.classes, "leaf") < 0) {
-                  branch.classes.push("leaf");
-                }
-              } else {
+              /*
+              if not branch.noLeaf and (not branch.children or branch.children.length == 0)
+                tree_icon = attrs.iconLeaf
+                branch.classes.push "leaf" if "leaf" not in branch.classes
+              else
+                if branch.expanded
+                  tree_icon = attrs.iconCollapse
+                else
+                  tree_icon = attrs.iconExpand
+              */
+
+              if (branch.noLeaf) {
                 if (branch.expanded) {
                   tree_icon = attrs.iconCollapse;
                 } else {
