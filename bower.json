@@ -1,12 +1,12 @@
 {
-    "name": "angular-bootstrap-nav-tree",
-    "version": "0.2.0",
+    "name": "sozcelik-tree",
+    "version": "0.0.1",
     "description":"A Tree Control for AngularJS, using CSS animation and Bootstrap style",
     "main":["dist/abn_tree_directive.js","dist/abn_tree.css"],
     "licence":"MIT",
     "keywords":["angularjs","bootstrap","tree","widget"],
-    "authors":["Nick Perkins"],
-    "homepage"  :"https://github.com/nickperkinslondon/angular-bootstrap-nav-tree",
+    "authors":["Nick Perkins","Süleyman Çağrı Özçelik"],
+    "homepage"  :"https://github.com/sozcelik87/angular-bootstrap-nav-tree",
     "repository":{
         "type":"git",
         "url":"git://github.com/nickperkinslondon/angular-bootstrap-nav-tree"

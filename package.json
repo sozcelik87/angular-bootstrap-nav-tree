@@ -1,6 +1,6 @@
 {
-  "name": "angular-bootstrap-nav-tree",
-  "version": "0.2.0",
+  "name": "sozcelik-treeData",
+  "version": "0.0.1",
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
