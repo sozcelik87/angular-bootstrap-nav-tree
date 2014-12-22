@@ -7,7 +7,7 @@ module.directive 'abnTree',['$timeout',($timeout)->
 
   template: """
 <ul class="nav nav-list nav-pills nav-stacked abn-tree">
-  <li ng-repeat="row in tree_rows | filter:{visible:true} track by $index" ng-animate="'abn-tree-animate'" ng-class="'level-' + {{ row.level }} + (row.branch.selected ? ' active':'') + ' ' +row.classes.join(' ')" class="abn-tree-row"><a ng-click="user_clicks_branch(row.branch)"><i ng-class="row.tree_icon" ng-click="row.branch.expanded = !row.branch.expanded" class="indented tree-icon"></i><i ng-class="row.branch.icon" ng-click="row.branch.expanded = !row.branch.expanded" class="indented tree-icon"> </i><span class="indented tree-label">{{ row.label }} </span></a></li>
+  <li context-menu="" data-target="row.branch.menu" ng-repeat="row in tree_rows | filter:{visible:true} track by $index" ng-animate="'abn-tree-animate'" ng-class="'level-' + {{ row.level }} + (row.branch.selected ? ' active':'') + ' ' +row.classes.join(' ')" class="abn-tree-row"><a ng-click="user_clicks_branch(row.branch)"><i ng-class="row.tree_icon" ng-click="row.branch.expanded = !row.branch.expanded" class="indented tree-icon"></i><i ng-class="row.branch.icon" class="indented tree-icon"> </i><span class="indented tree-label">{{ row.label }} </span></a></li>
 </ul>""" # will be replaced by Grunt, during build, with the actual Template HTML
   replace:true
   scope:

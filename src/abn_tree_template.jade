@@ -2,6 +2,8 @@
 ul.nav.nav-list.nav-pills.nav-stacked.abn-tree
 
   li.abn-tree-row(
+    context-menu=''
+    data-target='row.branch.menu'
     ng-repeat='row in tree_rows | filter:{visible:true} track by $index'
     ng-animate="'abn-tree-animate'"
     ng-class="'level-' + {{ row.level }} + (row.branch.selected ? ' active':'') + ' ' +row.classes.join(' ')"
@@ -15,7 +17,6 @@ ul.nav.nav-list.nav-pills.nav-stacked.abn-tree
         )
       i.indented.tree-icon(
         ng-class="row.branch.icon"
-        ng-click="row.branch.expanded = !row.branch.expanded"
         )  
 
       span.indented.tree-label {{ row.label }} 
