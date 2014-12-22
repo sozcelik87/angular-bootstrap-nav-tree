@@ -1,7 +1,7 @@
 (function() {
   var module;
 
-  module = angular.module('angularBootstrapNavTree', []);
+  module = angular.module('angularBootstrapNavTree', ['ng-context-menu']);
 
   module.directive('abnTree', [
     '$timeout', function($timeout) {
