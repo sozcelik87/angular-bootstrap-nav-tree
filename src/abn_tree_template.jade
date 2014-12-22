@@ -2,14 +2,14 @@
 ul.nav.nav-list.nav-pills.nav-stacked.abn-tree
 
   li.abn-tree-row(
-    context-menu=''
-    data-target='row.branch.menu'
     ng-repeat='row in tree_rows | filter:{visible:true} track by $index'
     ng-animate="'abn-tree-animate'"
     ng-class="'level-' + {{ row.level }} + (row.branch.selected ? ' active':'') + ' ' +row.classes.join(' ')"
     )
 
-    a(ng-click="user_clicks_branch(row.branch)")
+    a(context-menu=''
+    data-target='row.branch.menu'
+    ng-click="user_clicks_branch(row.branch)")
 
       i.indented.tree-icon(
         ng-class="row.tree_icon"
