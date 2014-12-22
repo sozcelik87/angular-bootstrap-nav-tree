@@ -9,7 +9,7 @@ ul.nav.nav-list.nav-pills.nav-stacked.abn-tree
 
     a(context-menu=''
     data-target='{{row.branch.menu}}'
-    ng-click="user_clicks_branch(row.branch)")
+    ng-click="user_clicks_branch(row.branch)").position-fixed
 
       i.indented.tree-icon(
         ng-class="row.tree_icon"
