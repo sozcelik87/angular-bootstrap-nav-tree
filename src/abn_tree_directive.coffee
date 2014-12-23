@@ -1,5 +1,21 @@
 module = angular.module 'angularBootstrapNavTree',['ng-context-menu']
 
+module.directive 'focus',['$timeout',($timeout)-> 
+  restrict :'A'
+  
+  scope :
+    trigger :'@focus'
+  
+  link:(scope,element)->
+    scope.$watch 'trigger',(value)->
+      if value=='true'
+        $timeout ()->
+          element[0].focus()
+          return
+        return
+    return
+]          
+
 module.directive 'abnTree',['$timeout',($timeout)-> 
   restrict:'E'
   

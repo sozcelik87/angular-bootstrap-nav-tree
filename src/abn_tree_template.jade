@@ -19,4 +19,7 @@ ul.nav.nav-list.nav-pills.nav-stacked.abn-tree
         ng-class="row.branch.icon"
         )  
 
-      span.indented.tree-label {{ row.label }} 
+      span.indented.tree-label(ng-hide="row.branch.edit") {{ row.label }}
+      input.intented.tree-label(
+                              ng-show="row.branch.edit"
+                              focus="{{row.branch.edit}}") {{ row.label }}
