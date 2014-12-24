@@ -20,7 +20,6 @@ ul.nav.nav-list.nav-pills.nav-stacked.abn-tree
         )  
 
       span.indented.tree-label(ng-hide="row.branch.edit") {{ row.label }}
-      input.intented.form-control(
-                              ng-show="row.branch.edit"
+      input.intented(ng-show="row.branch.edit"
                               focus="{{row.branch.edit}}" 
                               ng-blur="row.branch.edit=false") {{ row.label }}
