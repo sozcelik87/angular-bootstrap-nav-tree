@@ -23,4 +23,4 @@ ul.nav.nav-list.nav-pills.nav-stacked.abn-tree
       input.intented.tree-edit(ng-show="row.branch.edit"
                               ng-model="row.branch.label"
                               focus="{{row.branch.edit}}" 
-                              ng-blur="branch_label_changed")
+                              ng-blur="branch_label_changed(row.branch)")
