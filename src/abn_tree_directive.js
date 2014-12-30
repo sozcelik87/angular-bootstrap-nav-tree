@@ -106,6 +106,9 @@ module.directive('abnTree', [
             return select_branch(branch);
           }
         };
+        scope.change_branch_label = function(branch,label){
+          branch.label = label;
+        }
         get_parent = function(child) {
           var parent;
           parent = void 0;

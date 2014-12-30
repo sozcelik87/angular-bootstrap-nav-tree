@@ -21,5 +21,6 @@ ul.nav.nav-list.nav-pills.nav-stacked.abn-tree
 
       span.indented.tree-label(ng-hide="row.branch.edit") {{ row.label }}
       input.intented.tree-edit(ng-show="row.branch.edit"
+                              ng-model="row.branch.label"
                               focus="{{row.branch.edit}}" 
                               ng-blur="row.branch.edit=false") {{ row.label }}
