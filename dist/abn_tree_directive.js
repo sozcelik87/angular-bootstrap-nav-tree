@@ -27,7 +27,7 @@
     '$timeout', function($timeout) {
       return {
         restrict: 'E',
-        template: "<ul class=\"nav nav-list nav-pills nav-stacked abn-tree\">\n  <li ng-repeat=\"row in tree_rows | filter:{visible:true} track by $index\" ng-animate=\"'abn-tree-animate'\" ng-class=\"'level-' + {{ row.level }} + (row.branch.selected ? ' active':'') + ' ' +row.classes.join(' ')\" class=\"abn-tree-row\"><a context-menu=\"\" data-target=\"{{row.branch.menu}}\" ng-click=\"user_clicks_branch(row.branch)\" class=\"position-fixed\"><i ng-class=\"row.tree_icon\" ng-click=\"row.branch.expanded = !row.branch.expanded\" class=\"indented tree-icon\"></i><i ng-class=\"row.branch.icon\" class=\"indented tree-icon\"> </i><span ng-hide=\"row.branch.edit\" class=\"indented tree-label\">{{ row.label }}</span>\n      <input ng-show=\"row.branch.edit\" ng-model=\"row.branch.label\" focus=\"{{row.branch.edit}}\" ng-blur=\"row.branch.edit=false\" class=\"intented tree-edit\"/></a></li>\n</ul>",
+        template: "<ul class=\"nav nav-list nav-pills nav-stacked abn-tree\">\n  <li ng-repeat=\"row in tree_rows | filter:{visible:true} track by $index\" ng-animate=\"'abn-tree-animate'\" ng-class=\"'level-' + {{ row.level }} + (row.branch.selected ? ' active':'') + ' ' +row.classes.join(' ')\" class=\"abn-tree-row\"><a context-menu=\"\" data-target=\"{{row.branch.menu}}\" ng-click=\"user_clicks_branch(row.branch)\" class=\"position-fixed\"><i ng-class=\"row.tree_icon\" ng-click=\"row.branch.expanded = !row.branch.expanded\" class=\"indented tree-icon\"></i><i ng-class=\"row.branch.icon\" class=\"indented tree-icon\"> </i><span ng-hide=\"row.branch.edit\" class=\"indented tree-label\">{{ row.label }}</span>\n      <input ng-show=\"row.branch.edit\" ng-model=\"row.branch.label\" focus=\"{{row.branch.edit}}\" ng-blur=\"branch_label_changed\" class=\"intented tree-edit\"/></a></li>\n</ul>",
         replace: true,
         scope: {
           treeData: '=',
@@ -125,6 +125,10 @@
             if (branch !== selected_branch) {
               return select_branch(branch);
             }
+          };
+          scope.branch_label_changed = function(branch) {
+            branch.edit = false;
+            return tree.branch_label_changed(branch);
           };
           get_parent = function(child) {
             var parent;

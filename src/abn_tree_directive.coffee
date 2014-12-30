@@ -120,6 +120,10 @@ module.directive 'abnTree',['$timeout',($timeout)->
     scope.user_clicks_branch = (branch)->
       if branch isnt selected_branch
          select_branch(branch)
+         
+    scope.branch_label_changed=(branch)->
+      branch.edit=false
+      tree.branch_label_changed(branch)
 
 
     get_parent = (child)->
