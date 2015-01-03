@@ -7,7 +7,7 @@ ul.nav.nav-list.nav-pills.nav-stacked.abn-tree
     ng-class="'level-' + {{ row.level }} + (row.branch.selected ? ' active':'') + ' ' +row.classes.join(' ')"
     )
 
-    a(context-menu=''
+    a(context-menu='user_clicks_branch(row.branch)'
     data-target='{{row.branch.menu}}'
     ng-click="user_clicks_branch(row.branch)").position-fixed
 
