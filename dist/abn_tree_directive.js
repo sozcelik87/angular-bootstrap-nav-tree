@@ -231,6 +231,8 @@
                 } else {
                   tree_icon = attrs.iconExpand;
                 }
+              } else {
+                tree_icon = attrs.iconLeaf;
               }
               scope.tree_rows.push({
                 level: level,

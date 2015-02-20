@@ -238,7 +238,9 @@ module.directive 'abnTree',['$timeout',($timeout)->
           if branch.expanded
             tree_icon = attrs.iconCollapse
           else
-            tree_icon = attrs.iconExpand 
+            tree_icon = attrs.iconExpand
+        else
+          tree_icon = attrs.iconLeaf
 
         #
         # append to the list of "Tree Row" objects:
